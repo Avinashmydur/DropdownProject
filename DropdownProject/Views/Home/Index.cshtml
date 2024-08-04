@@ -1,0 +1,44 @@
+﻿@model DropdownProject.Models.Student
+
+<!-- Create dummy list for country dropdownList -->
+@{
+    List<SelectListItem> cities = new List<SelectListItem>()
+{
+        new SelectListItem{ Text = "Bengaluru", Value = "banglore" },
+        new SelectListItem{ Text = "Chennai", Value = "chn" },
+        new SelectListItem{ Text = "Mumbai", Value = "mum" },
+        new SelectListItem{ Text = "Hyderabad", Value = "hyb" }
+    };
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "studentForm" }))
+{
+    @Html.Label("Enter Id:")
+    @Html.TextBoxFor(Model => Model.Id)
+    <br />
+    <br />
+    @Html.Label("Enter Name:")
+    @Html.TextBoxFor(Model => Model.Name)
+    <br />
+    <br />
+    @Html.Label("Enter City")
+    @Html.DropDownListFor(Model => Model.City, cities, "Select city")
+    <br />
+    <br />
+    <div>
+        @Html.Label("Enter Gender")
+        <input id="Gender" name="Gender" value="Male" type="radio" /> Male
+        <input id="Gender" name="Gender" value="Female" type="radio" /> Female
+    </div>
+    <br />
+    <br />
+    <div>
+        @Html.Label("Select Course")
+        @Html.CheckBox("csharp", false) C#
+        @Html.CheckBox("java", false) Java
+        @Html.CheckBox("php", false) PHP
+    </div>
+    <br />
+    <br />
+    <input type="submit" value="Register" />
+}
